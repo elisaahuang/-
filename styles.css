@@ -110,15 +110,48 @@ body {
     border-bottom: 1px solid var(--secondary-border);
     background-color: #FFFFFF; /* 保持頂部欄位輕盈 */
 }
+
+/* 將原本的 .logo-link 樣式修改為背景圖片顯示 */
 .logo-link {
-    text-decoration: none; /* 移除連結預設的下劃線 */
-    color: var(--main-color); /* 保持文字顏色為黑色 */
+    /* 確保連結本身是塊級元素，以便設定寬高 */
+    display: block; 
     
-    font-size: 24px;
+    /* === 關鍵：設定圖片的寬高和背景圖片 === */
+    width: 200px; /* <--- 根據圖片內容，預設一個寬度，您可以調整 */
+    height: 45px; /* <--- 根據圖片內容，預設一個高度，您可以調整 */
+    background-image: url('logo.png'); /* <--- 替換成您圖片的實際路徑和檔名 */
+    background-size: contain; /* 確保圖片完全顯示在容器內，不會被裁切 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    background-position: left center; /* 圖片靠左垂直居中 */
+    
+    /* 移除所有文字相關的樣式，因為現在顯示的是圖片 */
+    text-decoration: none; 
+    color: transparent; /* 將文字顏色設為透明，徹底隱藏文字 */
+    /* font-size, font-weight, letter-spacing, cursor 等都可以移除 */
+    cursor: pointer;
+}
+
+/* 隱藏螢幕閱讀器專用文字 */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+/* .logo-link {
+    text-decoration: none; /* 移除連結預設的下劃線 */
+    /* color: var(--main-color); /* 保持文字顏色為黑色 */
+    
+    /* font-size: 24px;
     font-weight: 400; 
     letter-spacing: 1px;
-    cursor: pointer; /* 讓滑鼠移上去時顯示為點擊手勢 */
-}
+    cursor: pointer; 
+}*/
 /* .logo {
     font-size: 24px;
     font-weight: 400; 
@@ -236,6 +269,25 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+}
+
+/* --- 讓商品卡片連結樣式正常化 --- */
+.product-card-link {
+    text-decoration: none; /* 移除下劃線 */
+    color: inherit; /* 讓連結內的文字繼承父級顏色，通常是黑色 */
+    display: block; /* 讓連結填滿其網格單元 */
+    transition: transform 0.2s; /* 添加一個輕微的懸停動畫 (可選) */
+}
+
+.product-card-link:hover {
+    text-decoration: none; /* 再次確保懸停時也沒有下劃線 */
+    transform: translateY(-3px); /* 讓卡片看起來稍微浮起 (可選) */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加陰影 (可選) */
+}
+
+/* 如果您之前為 .product-card 設定了 margin，請將 margin 移到 .product-card-link 上 */
+.product-card {
+    /* ... 保持原有樣式，確保沒有影響連結樣式的屬性 ... */
 }
 
 /* 確保商品頁的內容從頂部開始，不需要居中 */
